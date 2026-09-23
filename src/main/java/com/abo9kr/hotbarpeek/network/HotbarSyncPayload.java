@@ -1,9 +1,9 @@
 package com.abo9kr.hotbarpeek.network;
 
-import net.fabricmc.fabric.api.networking.v1.PacketCodecs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
 
@@ -18,8 +18,8 @@ public record HotbarSyncPayload(UUID playerId, int selectedSlot, List<ItemStack>
             new CustomPayload.Id<>(Identifier.of("hotbarpeek", "hotbar_sync"));
 
     public static final PacketCodec<RegistryByteBuf, HotbarSyncPayload> CODEC = PacketCodec.tuple(
-            net.minecraft.network.codec.PacketCodecs.UUID, HotbarSyncPayload::playerId,
-            net.minecraft.network.codec.PacketCodecs.VAR_INT, HotbarSyncPayload::selectedSlot,
+            PacketCodecs.UUID, HotbarSyncPayload::playerId,
+            PacketCodecs.VAR_INT, HotbarSyncPayload::selectedSlot,
             PacketCodecs.collection(ArrayList::new, ItemStack.OPTIONAL_PACKET_CODEC), HotbarSyncPayload::hotbarItems,
             HotbarSyncPayload::new
     );
