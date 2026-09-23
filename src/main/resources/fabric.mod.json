@@ -3,16 +3,15 @@
   "id": "hotbarpeek",
   "version": "${version}",
   "name": "HotbarPeek",
-  "description": "Shows the item in a player's main hand and the contents of their hotbar floating above their head.",
+  "description": "Shows the item in a player's main hand floating above their head.",
   "authors": ["abo9kr"],
   "contact": {
     "homepage": "https://github.com/abo9kr/HotbarPeek",
     "issues": "https://github.com/abo9kr/HotbarPeek/issues"
   },
   "license": "MIT",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": ["com.abo9kr.hotbarpeek.HotbarPeek"],
     "client": ["com.abo9kr.hotbarpeek.client.HotbarPeekClient"]
   },
   "depends": {
