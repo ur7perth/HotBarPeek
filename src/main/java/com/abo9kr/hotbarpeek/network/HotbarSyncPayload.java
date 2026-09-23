@@ -6,6 +6,7 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Uuids;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public record HotbarSyncPayload(UUID playerId, int selectedSlot, List<ItemStack>
             new CustomPayload.Id<>(Identifier.of("hotbarpeek", "hotbar_sync"));
 
     public static final PacketCodec<RegistryByteBuf, HotbarSyncPayload> CODEC = PacketCodec.tuple(
-            PacketCodecs.UUID, HotbarSyncPayload::playerId,
+            Uuids.PACKET_CODEC, HotbarSyncPayload::playerId,
             PacketCodecs.VAR_INT, HotbarSyncPayload::selectedSlot,
             PacketCodecs.collection(ArrayList::new, ItemStack.OPTIONAL_PACKET_CODEC), HotbarSyncPayload::hotbarItems,
             HotbarSyncPayload::new
